@@ -70,7 +70,7 @@
         document.getElementById("MyClockDisplay").innerText = time;
         document.getElementById("MyClockDisplay").textContent = time;
 
-        if (prev_min != new_min) {
+        if (prev_min != new_min and new_min%5 == 0) {
             var temp_h = Number(h).toString();
             var temp_m = Number(m).toString();
 
