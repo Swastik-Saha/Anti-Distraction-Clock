@@ -9,12 +9,16 @@
     <style>
         body {
             background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .clock {
             position: absolute;
-            top: 20%;
             left: 50%;
+            top: 20%;
+
             transform: translateX(-50%) translateY(-50%);
             color: #09ff00;
             font-weight: bold;
@@ -26,17 +30,14 @@
         #focusvideo {
             position: absolute;
             top: 35%;
-            left: 39%;
         }
     </style>
 </head>
 
 <body>
-    <div class="container"></div>
     <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
     <div id="focusvideo">
         <video id="myVideo" width="320" height="240" src="focused.mp4" autoplay controls loop></video>
-    </div>
     </div>
 </body>
 </div>
