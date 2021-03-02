@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti Distraction Clock</title>
+    <style>
+        body {
+            background: black;
+        }
+
+        .clock {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: #09ff00;
+            font-size: 60px;
+            font-family: Orbitron;
+            letter-spacing: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+</body>
+<script>
+    var prev_min = 99
+    function showTime() {
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if (h == 0) {
+            h = 12;
+        }
+
+        if (h > 12) {
+            h = h - 12;
+            session = "PM";
+        }
+
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        new_min = m
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+
+        if (prev_min != new_min) {
+            var temp_h = Number(h).toString();
+            var temp_m = Number(m).toString();
+
+            var to_speak = `It is ${temp_h} ${temp_m} ${session}`;
+            let speech = new SpeechSynthesisUtterance();
+
+            speech.lang = "en-IN";
+            speech.text = to_speak;
+            speech.volume = 1;
+            speech.rate = 1;
+            speech.pitch = 1;
+
+            window.speechSynthesis.speak(speech);
+            prev_min = new_min
+        }
+
+        setTimeout(showTime, 1000);
+
+    }
+
+    showTime();
+</script>
+
+</html>
