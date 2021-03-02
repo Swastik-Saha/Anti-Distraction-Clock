@@ -13,21 +13,36 @@
 
         .clock {
             position: absolute;
-            top: 50%;
+            top: 20%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
             color: #09ff00;
-            font-size: 60px;
+            font-weight: bold;
+            font-size: 100px;
             font-family: Orbitron;
             letter-spacing: 7px;
+        }
+
+        #focusvideo {
+            position: absolute;
+            top: 35%;
+            left: 39%;
         }
     </style>
 </head>
 
 <body>
+    <div class="container"></div>
     <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    <div id="focusvideo">
+        <video id="myVideo" width="320" height="240" src="focused.mp4" autoplay controls loop></video>
+    </div>
+    </div>
 </body>
+</div>
 <script>
+    var vid = document.getElementById("myVideo");
+    vid.play() 
     var prev_min = 99
     function showTime() {
         var date = new Date();
